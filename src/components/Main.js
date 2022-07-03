@@ -8,19 +8,29 @@ import {
   Alert,
   ScrollView,
   SafeAreaView,
+  Button,
 } from "react-native";
 import Navbar from "./Navbar";
 import ListPlaceholder from "./ListPlaceholder";
+import { useNavigation } from "@react-navigation/native";
 
 const Main = () => {
+  const navigation = useNavigation();
+  const onPressLearnMore = () => {};
   return (
     <>
       <View style={Layout.container}>
         <Navbar />
+        <Button
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+          title="Learn More"
+        />
         <SafeAreaView>
-            <View style={Layout.contentApp}>
-              <ListPlaceholder />
-            </View>
+          <View style={Layout.contentApp}>
+            <ListPlaceholder />
+          </View>
         </SafeAreaView>
       </View>
     </>
@@ -31,10 +41,11 @@ const Layout = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight,
     flexGrow: 1,
+    backgroundColor: "white",
   },
   contentApp: {
-    paddingLeft: 20,
-      paddingRight: 20,
+    // paddingLeft: 20,
+    // paddingRight: 20,
   },
   navbar: {
     backgroundColor: "#6c5ce7",
@@ -63,6 +74,5 @@ const Layout = StyleSheet.create({
     padding: 30,
   },
 });
-
 
 export default Main;

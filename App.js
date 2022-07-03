@@ -1,23 +1,23 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TouchableNativeFeedback,
-  View,
-  Alert,
-} from "react-native";
-import Main from "./src/components/Main";
+// In App.js in a new project
 
-export default function App() {
-  return <Main />;
+import * as React from "react";
+import { View, Text, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./src/views/Home";
+import Profile from "./src/views/Profile";
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Profile" component={Profile} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default App;

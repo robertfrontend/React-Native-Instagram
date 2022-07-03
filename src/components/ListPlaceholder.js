@@ -6,34 +6,11 @@ import {
   View,
   Alert,
   FlatList,
+  Image,
 } from "react-native";
 import theme from "../theme";
+import Card from "./Post/Card";
 import StyledText from "./StyledText";
-
-const Item = ({ repo }) => {
-  return (
-    <View key={repo.id} style={{ padding: 10 }}>
-      <StyledText
-        color="black"
-        fontSize="title1"
-      >
-        {repo.title}
-      </StyledText>
-      <View style={{ display: "flex", flexDirection: "row" }}>
-        <View style={{ paddingRight: 10 }}>
-          <StyledText color="violet" fontSize="subtitle1">
-            Usuario:
-          </StyledText>
-        </View>
-        <View>
-          <StyledText color="primary" fontSize="subtitle1">
-            {repo.userId}
-          </StyledText>
-        </View>
-      </View>
-    </View>
-  );
-};
 
 const ListPlaceholder = () => {
   const [Data, setData] = useState([]);
@@ -43,7 +20,7 @@ const ListPlaceholder = () => {
   }, []);
 
   const getApiPlaceHolder = () => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
+    fetch("https://jsonplaceholder.typicode.com/albums/1/photos")
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -57,7 +34,7 @@ const ListPlaceholder = () => {
     <FlatList
       data={Data}
       ItemSeparatorComponent={() => <Text></Text>}
-      renderItem={({ item: repo }) => <Item repo={repo} />}
+      renderItem={({ item: repo }) => <Card data={repo} />}
     />
   );
 };
